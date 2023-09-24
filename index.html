@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trang Web Định Vị</title>
+</head>
+<body>
+  <button onclick="getLocation()">Lấy Vị Trí</button>
+  
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          
+          // Gửi vị trí của người dùng lên server
+          fetch('/update-location', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ latitude, longitude }),
+          })
+          .then(response => response.text())
+          .then(data => {
+            alert(data); // Hiển thị thông báo về việc cập nhật vị trí
+          })
+          .catch(error => {
+            console.error('Lỗi:', error);
+          });
+        });
+      } else {
+        alert('Trình duyệt không hỗ trợ định vị.');
+      }
+    }
+  </script>
+</body>
+</html>
