@@ -1,0 +1,3 @@
+Latitude: 10.730409, Longitude: 106.7073389
+Latitude: 10.7303771, Longitude: 106.7073384
+Latitude: 10.7303996, Longitude: 106.7073187
